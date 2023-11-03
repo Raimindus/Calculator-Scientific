@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Sains</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $(".btn").click(function () {
+          const buttonText = $(this).val();
+          const resultInput = $("input[name='result']");
+          switch (buttonText) {
+            case "sin":
+              resultInput.val(Math.sin(resultInput.val()));
+              break;
+            case "cos":
+              resultInput.val(Math.cos(resultInput.val()));
+              break;
+            case "tan":
+              resultInput.val(Math.tan(resultInput.val()));
+              break;
+            case "x^2":
+              resultInput.val(Math.pow(resultInput.val(), 2));
+              break;
+            case "x^3":
+              resultInput.val(Math.pow(resultInput.val(), 3));
+              break;
+            case "sqrt2":
+              resultInput.val(Math.sqrt(resultInput.val()));
+              break;
+            case "sqrt3":
+              resultInput.val(Math.cbrt(resultInput.val()));
+              break;
+            case "bckspc":
+              resultInput.val(resultInput.val().slice(0, -1));
+              break;
+            case "=":
+              resultInput.val(eval(resultInput.val()));
+              break;
+            case "%":
+              const inputValue = resultInput.val();
+              const parts = inputValue.split("+");
+              if (parts.length === 2) {
+                const number = parseFloat(parts[0]);
+                const percentage = parseFloat(parts[1]) / 100;
+                const result = number + number * percentage;
+                resultInput.val(result);
+              } else {
+                resultInput.val("Invalid bro!");
+              }
+              break;
+            default:
+              resultInput.val(resultInput.val() + buttonText);
+              break;
+          }
+        });
+        $(".rmv").click(function () {
+          $("input[name='result']").val("");
+        });
+      });
+    </script>
+    <style>
+      body {
+        background-color: black;
+        color: white;
+      }
+      .container {
+        border-radius: 30px;
+        box-shadow: 0 10px 40px rgba(255, 255, 255, 0.8);
+        padding: 20px;
+      }
+      .btn-container {
+        margin-bottom: 14px;
+      }
+      .btn {
+        border-color: #000000;
+        color: rgb(255, 255, 255);
+        border-radius: 12px;
+        font-size: 3em;
+        background-color: rgba(0, 0, 0, 0.3);
+        animation: animate 3s linear infinite;
+      }
+      .btn:hover {
+        border-color: #ffffff;
+        color: rgb(0, 203, 253);
+        text-shadow: 0 0 25px rgb(255, 255, 255);
+        background-color: rgba(0, 0, 0, 0.8);
+        animation: none;
+      }
+      .btn-container .row {
+        margin-right: 0;
+        margin-left: 0;
+      }
+      .btn-block {
+        width: 100%;
+      }
+      .col-md-3 {
+        padding-bottom: 3px;
+      }
+      .text-right {
+        color: #000000;
+        font-size: 50px;
+        border-radius: 30px;
+        border-color: #ffffff;
+        box-shadow: 0 0 4px rgba(255, 255, 255, 1);
+      }
+      @keyframes animate {
+        0%,
+        18%,
+        20%,
+        50.1%,
+        60%,
+        65.1%,
+        80%,
+        90.1%,
+        92% {
+          color: #0e3742;
+          box-shadow: none;
+        }
+        18.1%,
+        20.1%,
+        30%,
+        50%,
+        60.1%,
+        65%,
+        80.1%,
+        90%,
+        92.1%,
+        100% {
+          color: #fff;
+          text-shadow: 0 0 10px #03bcf4, 0 0 20px #03bcf4, 0 0 40px #03bcf4,
+            0 0 80px #03bcf4, 0 0 160px #03bcf4;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <form name="Calculator">
+        <div class="text-right mb-3">
+          <input
+            type="text"
+            name="result"
+            placeholder="0"
+            class="form-control text-right"
+          />
+        </div>
+        <div class="btn-container">
+          <div class="row">
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="sin"
+                class="btn btn-primary btn-block"
+              >
+                sin
+              </button>
+            </div>
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="cos"
+                class="btn btn-primary btn-block"
+              >
+                cos
+              </button>
+            </div>
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="tan"
+                class="btn btn-primary btn-block"
+              >
+                tan
+              </button>
+            </div>
+            <div class="col-md-3">
+              <button type="button" class="btn btn-danger btn-block rmv">
+                CE
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="btn-container">
+          <div class="row">
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="x^2"
+                class="btn btn-primary btn-block"
+              >
+                x<sup>2</sup>
+              </button>
+            </div>
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="x^3"
+                class="btn btn-primary btn-block"
+              >
+                x<sup>3</sup>
+              </button>
+            </div>
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="sqrt2"
+                class="btn btn-primary btn-block"
+              >
+                &radic;
+              </button>
+            </div>
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="sqrt3"
+                class="btn btn-primary btn-block"
+              >
+                &#8731;
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="btn-container">
+          <div class="row">
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="1"
+                class="btn btn-secondary btn-block num"
+              >
+                1
+              </button>
+            </div>
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="2"
+                class="btn btn-secondary btn-block num"
+              >
+                2
+              </button>
+            </div>
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="3"
+                class="btn btn-secondary btn-block num"
+              >
+                3
+              </button>
+            </div>
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="bckspc"
+                class="btn btn-primary btn-block num"
+              >
+                &lt;
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="btn-container">
+          <div class="row">
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="4"
+                class="btn btn-secondary btn-block num"
+              >
+                4
+              </button>
+            </div>
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="5"
+                class="btn btn-secondary btn-block num"
+              >
+                5
+              </button>
+            </div>
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="6"
+                class="btn btn-secondary btn-block num"
+              >
+                6
+              </button>
+            </div>
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="-"
+                class="btn btn-primary btn-block op"
+              >
+                -
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="btn-container">
+          <div class="row">
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="7"
+                class="btn btn-secondary btn-block num"
+              >
+                7
+              </button>
+            </div>
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="8"
+                class="btn btn-secondary btn-block num"
+              >
+                8
+              </button>
+            </div>
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="9"
+                class="btn btn-secondary btn-block num"
+              >
+                9
+              </button>
+            </div>
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="/"
+                class="btn btn-primary btn-block op"
+              >
+                :
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="btn-container">
+          <div class="row">
+            <div class="col-md-3">
+              <button type="button" value="." class="btn btn-primary btn-block">
+                .
+              </button>
+            </div>
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="0"
+                class="btn btn-secondary btn-block num"
+              >
+                0
+              </button>
+            </div>
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="*"
+                class="btn btn-primary btn-block op"
+              >
+                x
+              </button>
+            </div>
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="%"
+                class="btn btn-primary btn-block op"
+              >
+                %
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="btn-container">
+          <div class="row">
+            <div class="col-md-9">
+              <button
+                type="button"
+                value="="
+                class="btn btn-success btn-block equal"
+              >
+                =
+              </button>
+            </div>
+            <div class="col-md-3">
+              <button
+                type="button"
+                value="+"
+                class="btn btn-primary btn-block op"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
